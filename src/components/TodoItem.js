@@ -29,8 +29,8 @@ export class TodoItem extends Component {
                 {this.props.todo.completed.toString()}
 
 
-                // <button  style={btnStyle}>x</button>
-                git push --force deis master
+                <button  style={btnStyle}>x</button>
+             
               </p>
           </div>
         )
