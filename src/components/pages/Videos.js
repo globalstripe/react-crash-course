@@ -17,9 +17,7 @@ function Videos() {
       <p>Here's you daily video playlist</p>
       <hr></hr>
       
-      <h1>24fps Video 1</h1>
-      <video id='video1' src={Preview} autoPlay='false' controls='true' loop='true' style={VideoStyle}></video>
-      <div id='player'></div>
+ <div id='player'></div>
 
       <h1>Sintel video-react player</h1>
       <Player
@@ -29,9 +27,11 @@ function Videos() {
     />
 
 <h1>Sintel react-player</h1>
-      <ReactPlayer url='https://media.w3.org/2010/05/sintel/trailer_hd.mp4' playing  loop controls/>
+      <ReactPlayer url='https://media.w3.org/2010/05/sintel/trailer_hd.mp4' controls/>
       <div id='player'></div>
 
+      <h1>24fps Video 1</h1>
+      <video id='video1' src={Preview} controls='true' style={VideoStyle}></video>
      
 
       </div>
@@ -42,6 +42,9 @@ function Videos() {
   )
 }
 
+
+// Sintel react-plauer ... add "playing" and "loop" for autoplay
+//  <video id='video1' src={Preview} autoPlay='false' controls='true' loop='true' style={VideoStyle}></video>
 
 const VideoPageStyle = {
   textAlign: 'center',

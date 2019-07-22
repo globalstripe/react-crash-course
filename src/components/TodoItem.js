@@ -6,27 +6,19 @@ export class TodoItem extends Component {
     
   getStyle = () => {
       return {
-          background: '#f4f4f4', padding: '10px', borderBottom: '1px #ccc dotted',
+          background: '#f4f4f4',
+          padding: '10px', 
+          borderBottom: '1px #ccc dotted',
           textDecoration: this.props.todo.completed ? 'line-through' : 'none'
         }
     }
 
-    markComplete = (e) => {
-      alert("whoa " + this.props.todo.id)
-    }
-
-    buttonClicked = (e) => {
-      alert("You Clicked the button!" + this.props.todo.id)
-    }
-
     render() {
-
         const { id, title, completed } = this.props.todo;
-
         return (
           <div style={this.getStyle()}>
               <p>
-                <input type="checkbox" onChange={this.markComplete} /> {' '}
+                <input type="checkbox" onChange={this.props.markComplete.bind(this, id)} /> {' '}
                
                 {id} {' '}
                 {title} {' '}
@@ -37,8 +29,8 @@ export class TodoItem extends Component {
                 {this.props.todo.completed.toString()}
 
 
-                <button style={btnStyle} onClick={this.buttonClicked}>X</button>
-
+                // <button  style={btnStyle}>x</button>
+                git push --force deis master
               </p>
           </div>
         )
@@ -47,7 +39,9 @@ export class TodoItem extends Component {
 
   // PropTypes
   TodoItem.propTypes = {
-    todo: PropTypes.object.isRequired
+    todo: PropTypes.object.isRequired,
+    markComplete: PropTypes.func.isRequired,
+    delTodo: PropTypes.func.isRequired,
 }
 
 

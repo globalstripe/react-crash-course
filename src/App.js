@@ -15,13 +15,37 @@ import Todos from './components/Todos';
 import Header from './components/layout/Header';
 import { ToastContainer, toast } from 'react-toastify';
 import '../node_modules/react-toastify/dist/ReactToastify.css';
+import Fullscreen from "react-full-screen";
+
+
+
+// import AddTodo from './components/AddTodo';
+// import uuid from 'uuid';
+// import axios from 'axios'
 
 
 class App extends Component {
+  constructor(props) {
+    super();
 
-notify = () => toast("Wow so easy !");
+  }
+
+
+
+  goFull = () => {
+    if (this.isFull) {
+      this.setState({ isFull: false });
+    } else { 
+      this.setState({ isFull: true });
+    }
+  }
+
+  notify = () => toast("Wow so easy !");
 
   state = {
+    
+    isFull: false,
+
     todos: [
         {
         id: 1,
@@ -54,19 +78,47 @@ notify = () => toast("Wow so easy !");
         title: 'Go to Sleep',
         completed: false
           },
-    ]
+    ] 
+
   }
+
   
+  // Toggle Complete
+	markComplete = (id) => {
+		this.setState({
+			todos: this.state.todos.map((todo) => {
+				if (todo.id === id) {
+					todo.completed = !todo.completed;
+				}
+				return todo;
+			})
+		});
+  };
+  
+
   //<Router basename="/build">
   render() {
     return (
       <Router>
+        <Fullscreen
+          enabled={this.state.isFull}
+          onChange={isFull => this.setState({isFull})}
+        >
       <div className="App">
       <Header />
 
         <Route exact path="/" render={props => (
           <React.Fragment>
-             <Todos todos={this.state.todos} /> 
+       
+          <div className="full-screenable-node">
+            
+          </div>
+ <Todos 
+    todos={this.state.todos} 
+    markComplete={this.markComplete}
+    /> 
+        
+            
           </React.Fragment>
         )} />
 
@@ -83,7 +135,14 @@ notify = () => toast("Wow so easy !");
 
         <Route path="/Axios" component={AxiosDemo} />
 
+ 
+        <br></br>{' '}
+        <p>{' .....'} <button onClick={this.goFull}>
+          Toggle Fullscreen
+        </button></p>
+
      </div>
+     </Fullscreen>
      </Router>
     
     )
